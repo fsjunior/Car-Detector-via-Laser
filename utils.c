@@ -63,3 +63,12 @@ void calc_x_y(int scan_count, int index, double range, double *x, double *y)
     *x = cos(angle) * range;
     *y = sin(angle) * range;
 }
+
+double get_mean(double *v, const int s)
+{
+    double m = 0.0;
+    int i;
+    for(i = 0; i < s; i++)
+        m += v[i];
+    return m / (double)s;
+}

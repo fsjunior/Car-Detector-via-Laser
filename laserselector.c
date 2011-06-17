@@ -29,8 +29,8 @@ void init_laser_selector(laser_selector_ctx *ctx, playerc_laser_t *laser, char *
     /* Print Arff Header */
     fprintf(ctx->file, "@RELATION carimage\n\n");
     
-    for(j = 0; j < ctx->laser->scan_count; j++)
-        fprintf(ctx->file, "@ATTRIBUTE range_%d NUMERIC\n", j);
+    for(j = 0; j < (ctx->laser->scan_count / LASER_MEAN_SIZE); j++)
+        fprintf(ctx->file, "@ATTRIBUTE range_mean_%d NUMERIC\n", j);
     fprintf(ctx->file, "@ATTRIBUTE car_pos NUMERIC\n");
     fprintf(ctx->file, "\n@DATA\n");
 }
@@ -45,8 +45,8 @@ void free_laser_selector(laser_selector_ctx *ctx)
 void save_laser_data(laser_selector_ctx *ctx)
 {
     int i;
-    for(i = 0; i < ctx->laser->scan_count;i++)
-        fprintf(ctx->file, "%f,", ctx->laser->ranges[i]);
+    for(i = 0; i < (ctx->laser->scan_count / LASER_MEAN_SIZE);i++)
+        fprintf(ctx->file, "%f,", get_mean(ctx->laser->ranges + i * LASER_MEAN_SIZE, LASER_MEAN_SIZE));
 
     fprintf(ctx->file, "%d\n", ctx->last_index);
     fflush(ctx->file);
@@ -108,8 +108,6 @@ void least_dist(laser_selector_ctx *ctx, int uPoint, int vPoint)
         }
     }
 }
-
-
 
 void draw_laser_selector(laser_selector_ctx *ctx)
 {

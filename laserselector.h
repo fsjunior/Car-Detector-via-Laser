@@ -12,7 +12,8 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 
-#ifdef CV_EXTERN_C
+#define LASER_MEAN_SIZE 10
+
 
 
 
@@ -29,7 +30,6 @@ void free_laser_selector(laser_selector_ctx *ctx);
 
 void draw_laser_selector(laser_selector_ctx *ctx);
 
-#endif
 
 #endif	/* LASERDRAW_H */
 
