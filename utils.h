@@ -41,8 +41,6 @@ void init_particle(double_particle *p, int s);
 
 
 double calc_dist(double x1, double x2, double y1, double y2);
-
-
-
+void calc_x_y(int scan_count, int index, double range, double *x, double *y);
 
 #endif /* _UTILS_H */

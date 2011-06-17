@@ -56,3 +56,10 @@ void init_particle(double_particle *p, int s)
     memset(p, 0, sizeof(double_particle) * s);
 }
 
+void calc_x_y(int scan_count, int index, double range, double *x, double *y)
+{
+    double angle = degreetoradian((180.0 / (double) scan_count) * (double) index);
+
+    *x = cos(angle) * range;
+    *y = sin(angle) * range;
+}

@@ -1,11 +1,9 @@
 all:
-		gcc -c camera.c `pkg-config --cflags playerc gsl opencv` -Wall
-		gcc -c homography.c `pkg-config --cflags playerc gsl opencv` -Wall
-		gcc -c laser.c `pkg-config --cflags playerc gsl opencv` -Wall
+		gcc -c laserselector.c `pkg-config --cflags playerc gsl opencv` -Wall
 		gcc -c utils.c `pkg-config --cflags playerc gsl opencv` -Wall
 		gcc -c main.c `pkg-config --cflags playerc gsl opencv` -Wall
-		gcc -o cone_detector camera.o homography.o main.o laser.o utils.o `pkg-config --libs playerc gsl opencv` -lm -Wall
+		gcc -o car_detector main.o laserselector.o utils.o `pkg-config --libs playerc gsl opencv` -lm -Wall
 		
 
 clean:
-		rm *.o cone-detector
+		rm *.o car_detector
