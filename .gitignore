@@ -1,6 +1,6 @@
 nbproject/private/
 *.o
 *~
-cone_detector
+car_detector
 logs/
 *.so
